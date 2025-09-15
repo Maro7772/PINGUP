@@ -135,7 +135,7 @@ const deleteStory = inngest.createFunction(
 
 const sendNotificationOfUnseenMessages = inngest.createFunction(
   { id: "send-unseen-messages-notification" },
-  { cron: "TZ=Egypt/Cairo 0 9 * * *" }, // Every day at 9 AM
+  { cron: "TZ=America/New_York 0 9 * * *" }, // Every day at 9 AM
   { event: "app/new-message" },
   async ({ step }) => {
     const messages = await Message.find({ seen: false }).populate("to_user_id");
