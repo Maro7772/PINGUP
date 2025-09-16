@@ -48,10 +48,10 @@ export const addUserStory = async (req, res) => {
 export const getStories = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
 
     // User Connections and Followings
-    const userIds = [userId, ...user.conections, ...user.followings];
+    const userIds = [userId, ...user.connections, ...user.following];
 
     const stories = await Story.find({
       user: { $in: userIds },
